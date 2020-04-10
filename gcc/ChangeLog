@@ -2664,6 +2664,28 @@
 	PR tree-optimization/100253
 	* tree-vect-stmts.c (vectorizable_load): Do not assume
 	element alignment when DR_MISALIGNMENT is -1.
+2020-05-19  Kito Cheng  <kito.cheng@sifive.com>
+
+	* riscv-common.c (parse_sv_or_non_std_ext): Rename to
+	parse_multiletter_ext.
+	(parse_multiletter_ext): Add parsing `h` and `z`, drop `sx`,
+	adjust parsing order for 's' and 'x'.
+
+2020-05-19  Richard Biener  <rguenther@suse.de>
+
+	* tree-vectorizer.h (_slp_tree::vectype): Add field.
+	(SLP_TREE_VECTYPE): New.
+	* tree-vect-slp.c (vect_create_new_slp_node): Initialize
+	SLP_TREE_VECTYPE.
+	(vect_create_new_slp_node): Likewise.
+	(vect_prologue_cost_for_slp): Move here from tree-vect-stmts.c
+	and simplify.
+	(vect_slp_analyze_node_operations): Walk nodes children for
+	invariant costing.
+	(vect_get_constant_vectors): Use local scope op variable.
+	* tree-vect-stmts.c (vect_prologue_cost_for_slp_op): Remove here.
+	(vect_model_simple_cost): Adjust.
+	(vect_model_store_cost): Likewise.
 	(vectorizable_store): Likewise.
 
 2021-11-08  Kewen Lin  <linkw@linux.ibm.com>
