@@ -8644,8 +8644,6 @@
 	* config/arm/thumb1.md (thumb1_stack_protect_test_insn): Likewise.
 
 2020-08-07  Richard Sandiford  <richard.sandiford@arm.com>
-=======
->>>>>>> f908b69cfd7... RISC-V: Handle implied extension for -march parser.
 
 	Backported from master:
 	2020-08-05  Richard Sandiford  <richard.sandiford@arm.com>
@@ -8757,6 +8755,19 @@
 	PR middle-end/96426
 	* tree-vect-generic.c (expand_vector_conversion): Replace .VEC_CONVERT
 	call with GIMPLE_NOP if there is no lhs.
+
+2020-05-20  Kito Cheng  <kito.cheng@sifive.com>
+
+	PR target/90811
+	* Makefile.in (OBJS): Add adjust-alignment.o.
+	* adjust-alignment.c (pass_data_adjust_alignment): New.
+	(pass_adjust_alignment): New.
+	(pass_adjust_alignment::execute): New.
+	(make_pass_adjust_alignment): New.
+	* tree-pass.h (make_pass_adjust_alignment): New.
+	* passes.def: Add pass_adjust_alignment.
+
+2020-05-19  Alex Coplan  <alex.coplan@arm.com>
 
 2020-08-04  Jakub Jelinek  <jakub@redhat.com>
 
