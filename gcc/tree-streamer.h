@@ -57,7 +57,7 @@ struct streamer_tree_cache_d
   unsigned next_idx;
 };
 
-/* In tree-streamer-in.c.  */
+/* In tree-streamer-in.cc.  */
 tree streamer_read_string_cst (class data_in *, class lto_input_block *);
 tree streamer_read_chain (class lto_input_block *, class data_in *);
 tree streamer_alloc_tree (class lto_input_block *, class data_in *,
@@ -67,7 +67,7 @@ tree streamer_get_pickled_tree (class lto_input_block *, class data_in *);
 void streamer_read_tree_bitfields (class lto_input_block *,
 				   class data_in *, tree);
 
-/* In tree-streamer-out.c.  */
+/* In tree-streamer-out.cc.  */
 void streamer_write_string_cst (struct output_block *,
 				struct lto_output_stream *, tree);
 void streamer_write_chain (struct output_block *, tree, bool);
@@ -76,7 +76,7 @@ void streamer_write_tree_bitfields (struct output_block *, tree);
 void streamer_write_tree_body (struct output_block *, tree, bool);
 void streamer_write_integer_cst (struct output_block *, tree, bool);
 
-/* In tree-streamer.c.  */
+/* In tree-streamer.cc.  */
 extern unsigned char streamer_mode_table[1 << 8];
 void streamer_check_handled_ts_structures (void);
 bool streamer_tree_cache_insert (struct streamer_tree_cache_d *, tree,

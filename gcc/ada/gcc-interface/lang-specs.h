@@ -23,7 +23,7 @@
  *                                                                          *
  ****************************************************************************/
 
-/* This is the contribution to the `default_compilers' array in gcc.c for
+/* This is the contribution to the `default_compilers' array in gcc.cc for
    GNAT.  */
 
   {".ads", "@ada", 0, 0, 0},

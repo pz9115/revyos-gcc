@@ -666,7 +666,7 @@ initialize_tree_contains_struct (void)
 }
 
 
-/* Init tree.c.  */
+/* Init tree.cc.  */
 
 void
 init_ttree (void)
@@ -14163,7 +14163,7 @@ type_with_interoperable_signedness (const_tree type)
 
 /* Return true iff T1 and T2 are structurally identical for what
    TBAA is concerned.  
-   This function is used both by lto.c canonical type merging and by the
+   This function is used both by lto.cc canonical type merging and by the
    verifier.  If TRUST_TYPE_CANONICAL we do not look into structure of types
    that have TYPE_CANONICAL defined and assume them equivalent.  This is useful
    only for LTO because only in these cases TYPE_CANONICAL equivalence

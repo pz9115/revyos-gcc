@@ -289,9 +289,9 @@ const char *tcb_verification_symbol = "__parse_hwcap_and_convert_at_platform";
 /* True if we have expanded a CPU builtin.  */
 bool cpu_builtin_p = false;
 
-/* Pointer to function (in rs6000-c.c) that can define or undefine target
+/* Pointer to function (in rs6000-c.cc) that can define or undefine target
    macros that have changed.  Languages that don't support the preprocessor
-   don't link in rs6000-c.c, so we can't call it directly.  */
+   don't link in rs6000-c.cc, so we can't call it directly.  */
 void (*rs6000_target_modify_macros_ptr) (bool, HOST_WIDE_INT, HOST_WIDE_INT);
 
 /* Simplfy register classes into simpler classifications.  We assume
@@ -8304,7 +8304,7 @@ legitimate_lo_sum_address_p (machine_mode mode, rtx x, int strict)
 
 /* Try machine-dependent ways of modifying an illegitimate address
    to be legitimate.  If we find one, return the new, valid address.
-   This is used from only one place: `memory_address' in explow.c.
+   This is used from only one place: `memory_address' in explow.cc.
 
    OLDX is the address as it was before break_out_memory_refs was
    called.  In some cases it is useful to look at this to decide what
@@ -8489,7 +8489,7 @@ rs6000_debug_legitimize_address (rtx x, rtx oldx, machine_mode mode)
   return ret;
 }
 
-/* This is called from dwarf2out.c via TARGET_ASM_OUTPUT_DWARF_DTPREL.
+/* This is called from dwarf2out.cc via TARGET_ASM_OUTPUT_DWARF_DTPREL.
    We need to emit DTP-relative relocations.  */
 
 static void rs6000_output_dwarf_dtprel (FILE *, int, rtx) ATTRIBUTE_UNUSED;
@@ -9192,7 +9192,7 @@ rs6000_mode_dependent_address (const_rtx addr)
 	 all bytes have the same high part address.  */
       return !legitimate_constant_pool_address_p (addr, QImode, false);
 
-    /* Auto-increment cases are now treated generically in recog.c.  */
+    /* Auto-increment cases are now treated generically in recog.cc.  */
     case PRE_MODIFY:
       return TARGET_UPDATE;
 

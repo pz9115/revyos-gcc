@@ -606,7 +606,7 @@
 })
 
 ;; Avoid combining registers from different units in a single alternative,
-;; see comment above inline_secondary_memory_needed function in i386.c
+;; see comment above inline_secondary_memory_needed function in i386.cc
 (define_insn_and_split "*vec_extractv2sf_0"
   [(set (match_operand:SF 0 "nonimmediate_operand"     "=x, m,y ,m,f,r")
 	(vec_select:SF
@@ -621,7 +621,7 @@
   [(set_attr "mmx_isa" "*,*,native,native,*,*")])
 
 ;; Avoid combining registers from different units in a single alternative,
-;; see comment above inline_secondary_memory_needed function in i386.c
+;; see comment above inline_secondary_memory_needed function in i386.cc
 (define_insn "*vec_extractv2sf_1"
   [(set (match_operand:SF 0 "nonimmediate_operand"     "=y,x,x,y,x,f,r")
 	(vec_select:SF
@@ -1713,7 +1713,7 @@
 })
 
 ;; Avoid combining registers from different units in a single alternative,
-;; see comment above inline_secondary_memory_needed function in i386.c
+;; see comment above inline_secondary_memory_needed function in i386.cc
 (define_insn_and_split "*vec_extractv2si_0"
   [(set (match_operand:SI 0 "nonimmediate_operand"     "=x,m,y, m,r,r")
 	(vec_select:SI
@@ -1770,7 +1770,7 @@
   "operands[1] = gen_lowpart (SImode, operands[1]);")
 
 ;; Avoid combining registers from different units in a single alternative,
-;; see comment above inline_secondary_memory_needed function in i386.c
+;; see comment above inline_secondary_memory_needed function in i386.cc
 (define_insn "*vec_extractv2si_1"
   [(set (match_operand:SI 0 "nonimmediate_operand"     "=y,rm,x,x,y,x,r")
 	(vec_select:SI

@@ -344,7 +344,7 @@ compatible_types (gcc::jit::recording::type *ltype,
    gcc_jit_context_new_child_context below.
 
    The real work is done in the constructor for
-   gcc::jit::recording::context in jit-recording.c. */
+   gcc::jit::recording::context in jit-recording.cc. */
 
 gcc_jit_context *
 gcc_jit_context_acquire (void)
@@ -356,7 +356,7 @@ gcc_jit_context_acquire (void)
 
 /* Public entrypoint for releasing a gcc_jit_context.
    The real work is done in the destructor for
-   gcc::jit::recording::context in jit-recording.c.  */
+   gcc::jit::recording::context in jit-recording.cc.  */
 
 void
 gcc_jit_context_release (gcc_jit_context *ctxt)
@@ -371,7 +371,7 @@ gcc_jit_context_release (gcc_jit_context *ctxt)
    PARENT_CTXT.  See description in libgccjit.h.
 
    The real work is done in the constructor for
-   gcc::jit::recording::context in jit-recording.c. */
+   gcc::jit::recording::context in jit-recording.cc. */
 
 gcc_jit_context *
 gcc_jit_context_new_child_context (gcc_jit_context *parent_ctxt)
@@ -388,7 +388,7 @@ gcc_jit_context_new_child_context (gcc_jit_context *parent_ctxt)
 
    After error-checking, the real work is done by the
      gcc::jit::recording::context::new_location
-   method in jit-recording.c.  */
+   method in jit-recording.cc.  */
 
 gcc_jit_location *
 gcc_jit_context_new_location (gcc_jit_context *ctxt,
@@ -433,7 +433,7 @@ gcc_jit_type_as_object (gcc_jit_type *type)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::get_type method, in
-   jit-recording.c  */
+   jit-recording.cc  */
 
 gcc_jit_type *
 gcc_jit_context_get_type (gcc_jit_context *ctxt,
@@ -455,7 +455,7 @@ gcc_jit_context_get_type (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::get_int_type method,
-   in jit-recording.c.  */
+   in jit-recording.cc.  */
 
 gcc_jit_type *
 gcc_jit_context_get_int_type (gcc_jit_context *ctxt,
@@ -472,7 +472,7 @@ gcc_jit_context_get_int_type (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::type::get_pointer method, in
-   jit-recording.c  */
+   jit-recording.cc  */
 
 gcc_jit_type *
 gcc_jit_type_get_pointer (gcc_jit_type *type)
@@ -486,7 +486,7 @@ gcc_jit_type_get_pointer (gcc_jit_type *type)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::type::get_const method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_type *
 gcc_jit_type_get_const (gcc_jit_type *type)
@@ -500,7 +500,7 @@ gcc_jit_type_get_const (gcc_jit_type *type)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::type::get_volatile method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_type *
 gcc_jit_type_get_volatile (gcc_jit_type *type)
@@ -514,7 +514,7 @@ gcc_jit_type_get_volatile (gcc_jit_type *type)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_array_type method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_type *
 gcc_jit_context_new_array_type (gcc_jit_context *ctxt,
@@ -537,7 +537,7 @@ gcc_jit_context_new_array_type (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_field method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_field *
 gcc_jit_context_new_field (gcc_jit_context *ctxt,
@@ -564,7 +564,7 @@ gcc_jit_context_new_field (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_bitfield method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_field *
 gcc_jit_context_new_bitfield (gcc_jit_context *ctxt,
@@ -615,7 +615,7 @@ gcc_jit_field_as_object (gcc_jit_field *field)
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_struct_type method,
    immediately followed by a "set_fields" call on the resulting
-   gcc::jit::recording::compound_type *, both in jit-recording.c  */
+   gcc::jit::recording::compound_type *, both in jit-recording.cc  */
 
 gcc_jit_struct *
 gcc_jit_context_new_struct_type (gcc_jit_context *ctxt,
@@ -653,7 +653,7 @@ gcc_jit_context_new_struct_type (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_struct_type method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_struct *
 gcc_jit_context_new_opaque_struct (gcc_jit_context *ctxt,
@@ -686,7 +686,7 @@ gcc_jit_struct_as_type (gcc_jit_struct *struct_type)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::compound_type::set_fields method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_struct_set_fields (gcc_jit_struct *struct_type,
@@ -729,7 +729,7 @@ gcc_jit_struct_set_fields (gcc_jit_struct *struct_type,
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_union_type method,
    immediately followed by a "set_fields" call on the resulting
-   gcc::jit::recording::compound_type *, both in jit-recording.c  */
+   gcc::jit::recording::compound_type *, both in jit-recording.cc  */
 
 gcc_jit_type *
 gcc_jit_context_new_union_type (gcc_jit_context *ctxt,
@@ -767,7 +767,7 @@ gcc_jit_context_new_union_type (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_function_ptr_type method,
-   in jit-recording.c  */
+   in jit-recording.cc  */
 
 gcc_jit_type *
 gcc_jit_context_new_function_ptr_type (gcc_jit_context *ctxt,
@@ -803,7 +803,7 @@ gcc_jit_context_new_function_ptr_type (gcc_jit_context *ctxt,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::recording::context::new_param method, in jit-recording.c  */
+   gcc::jit::recording::context::new_param method, in jit-recording.cc  */
 
 gcc_jit_param *
 gcc_jit_context_new_param (gcc_jit_context *ctxt,
@@ -865,7 +865,7 @@ gcc_jit_param_as_rvalue (gcc_jit_param *param)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_function method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_function *
 gcc_jit_context_new_function (gcc_jit_context *ctxt,
@@ -946,7 +946,7 @@ gcc_jit_context_new_function (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::get_builtin_function method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_function *
 gcc_jit_context_get_builtin_function (gcc_jit_context *ctxt,
@@ -1001,7 +1001,7 @@ gcc_jit_function_get_param (gcc_jit_function *func, int index)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::function::dump_to_dot method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_function_dump_to_dot (gcc_jit_function *func,
@@ -1019,7 +1019,7 @@ gcc_jit_function_dump_to_dot (gcc_jit_function *func,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::function::new_block method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_block*
 gcc_jit_function_new_block (gcc_jit_function *func,
@@ -1067,7 +1067,7 @@ gcc_jit_block_get_function (gcc_jit_block *block)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_global method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_lvalue *
 gcc_jit_context_new_global (gcc_jit_context *ctxt,
@@ -1169,7 +1169,7 @@ gcc_jit_rvalue_get_type (gcc_jit_rvalue *rvalue)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_rvalue_from_int method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_rvalue_from_int (gcc_jit_context *ctxt,
@@ -1184,7 +1184,11 @@ gcc_jit_context_new_rvalue_from_int (gcc_jit_context *ctxt,
 	  ->new_rvalue_from_const <int> (numeric_type, value));
 }
 
-/* FIXME. */
+/* Public entrypoint.  See description in libgccjit.h.
+
+   After error-checking, the real work is done by the
+   gcc::jit::recording::context::new_rvalue_from_const <long> method
+   in jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_rvalue_from_long (gcc_jit_context *ctxt,
@@ -1237,7 +1241,7 @@ gcc_jit_context_one (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_rvalue_from_double method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_rvalue_from_double (gcc_jit_context *ctxt,
@@ -1256,7 +1260,7 @@ gcc_jit_context_new_rvalue_from_double (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_rvalue_from_ptr method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_rvalue_from_ptr (gcc_jit_context *ctxt,
@@ -1302,7 +1306,7 @@ gcc_jit_context_null (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_string_literal method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_string_literal (gcc_jit_context *ctxt,
@@ -1319,7 +1323,7 @@ gcc_jit_context_new_string_literal (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_unary_op method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_unary_op (gcc_jit_context *ctxt,
@@ -1365,7 +1369,7 @@ valid_binary_op_p (enum gcc_jit_binary_op op)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_binary_op method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_binary_op (gcc_jit_context *ctxt,
@@ -1409,7 +1413,7 @@ gcc_jit_context_new_binary_op (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_comparison method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_comparison (gcc_jit_context *ctxt,
@@ -1445,7 +1449,7 @@ gcc_jit_context_new_comparison (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_call method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_call (gcc_jit_context *ctxt,
@@ -1518,7 +1522,7 @@ gcc_jit_context_new_call (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_call_through_ptr method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_call_through_ptr (gcc_jit_context *ctxt,
@@ -1648,7 +1652,7 @@ is_valid_cast (gcc::jit::recording::type *src_type,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::recording::context::new_cast method in jit-recording.c.  */
+   gcc::jit::recording::context::new_cast method in jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_context_new_cast (gcc_jit_context *ctxt,
@@ -1676,7 +1680,7 @@ gcc_jit_context_new_cast (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_array_access method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 extern gcc_jit_lvalue *
 gcc_jit_context_new_array_access (gcc_jit_context *ctxt,
@@ -1723,7 +1727,7 @@ gcc_jit_object_get_context (gcc_jit_object *obj)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::memento::get_debug_string method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 const char *
 gcc_jit_object_get_debug_string (gcc_jit_object *obj)
@@ -1737,7 +1741,7 @@ gcc_jit_object_get_debug_string (gcc_jit_object *obj)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::lvalue::access_field method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_lvalue *
 gcc_jit_lvalue_access_field (gcc_jit_lvalue *struct_,
@@ -1769,7 +1773,7 @@ gcc_jit_lvalue_access_field (gcc_jit_lvalue *struct_,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::rvalue::access_field method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_rvalue_access_field (gcc_jit_rvalue *struct_,
@@ -1801,7 +1805,7 @@ gcc_jit_rvalue_access_field (gcc_jit_rvalue *struct_,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::rvalue::deference_field method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_lvalue *
 gcc_jit_rvalue_dereference_field (gcc_jit_rvalue *ptr,
@@ -1839,7 +1843,7 @@ gcc_jit_rvalue_dereference_field (gcc_jit_rvalue *ptr,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::rvalue::deference method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_lvalue *
 gcc_jit_rvalue_dereference (gcc_jit_rvalue *rvalue,
@@ -1872,7 +1876,7 @@ gcc_jit_rvalue_dereference (gcc_jit_rvalue *rvalue,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::recording::lvalue::get_address method in jit-recording.c.  */
+   gcc::jit::recording::lvalue::get_address method in jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_lvalue_get_address (gcc_jit_lvalue *lvalue,
@@ -1888,7 +1892,7 @@ gcc_jit_lvalue_get_address (gcc_jit_lvalue *lvalue,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::recording::function::new_local method in jit-recording.c.  */
+   gcc::jit::recording::function::new_local method in jit-recording.cc.  */
 
 gcc_jit_lvalue *
 gcc_jit_function_new_local (gcc_jit_function *func,
@@ -1918,7 +1922,7 @@ gcc_jit_function_new_local (gcc_jit_function *func,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::recording::block::add_eval method in jit-recording.c.  */
+   gcc::jit::recording::block::add_eval method in jit-recording.cc.  */
 
 void
 gcc_jit_block_add_eval (gcc_jit_block *block,
@@ -1945,7 +1949,7 @@ gcc_jit_block_add_eval (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::add_assignment method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_add_assignment (gcc_jit_block *block,
@@ -1985,7 +1989,7 @@ gcc_jit_block_add_assignment (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::add_assignment_op method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_add_assignment_op (gcc_jit_block *block,
@@ -2043,7 +2047,7 @@ is_bool (gcc_jit_rvalue *boolval)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::end_with_conditional method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_end_with_conditional (gcc_jit_block *block,
@@ -2099,7 +2103,7 @@ gcc_jit_block_end_with_conditional (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::add_comment method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_add_comment (gcc_jit_block *block,
@@ -2119,7 +2123,7 @@ gcc_jit_block_add_comment (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::end_with_jump method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_end_with_jump (gcc_jit_block *block,
@@ -2149,7 +2153,7 @@ gcc_jit_block_end_with_jump (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::end_with_return method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_end_with_return (gcc_jit_block *block,
@@ -2188,7 +2192,7 @@ gcc_jit_block_end_with_return (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::end_with_return method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_end_with_void_return (gcc_jit_block *block,
@@ -2214,7 +2218,7 @@ gcc_jit_block_end_with_void_return (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_case method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_case *
 gcc_jit_context_new_case (gcc_jit_context *ctxt,
@@ -2433,7 +2437,7 @@ case_range_validator::case_range_validator (gcc::jit::recording::context *ctxt,
    ranges of cases we've already seen.
    Return true if everything is OK.
    Return false and emit an error if there is an overlap.
-   Compare with c-family/c-common.c:c_add_case_label.  */
+   Compare with c-family/c-common.cc:c_add_case_label.  */
 
 bool
 case_range_validator::validate (gcc_jit_case *case_,
@@ -2499,7 +2503,7 @@ case_range_validator::validate (gcc_jit_case *case_,
   return true;
 }
 
-/* Compare with c-family/c-common.c:case_compare, which acts on tree
+/* Compare with c-family/c-common.cc:case_compare, which acts on tree
    nodes, rather than rvalue *.
 
    Comparator for case label values.  K1 and K2 must be constant integer
@@ -2533,7 +2537,7 @@ case_range_validator::get_wide_int (gcc::jit::recording::rvalue *k)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::block::end_with_switch method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_block_end_with_switch (gcc_jit_block *block,
@@ -2594,7 +2598,7 @@ gcc_jit_block_end_with_switch (gcc_jit_block *block,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::set_str_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_set_str_option (gcc_jit_context *ctxt,
@@ -2613,7 +2617,7 @@ gcc_jit_context_set_str_option (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::set_int_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_set_int_option (gcc_jit_context *ctxt,
@@ -2631,7 +2635,7 @@ gcc_jit_context_set_int_option (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::set_bool_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_set_bool_option (gcc_jit_context *ctxt,
@@ -2649,7 +2653,7 @@ gcc_jit_context_set_bool_option (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::set_inner_bool_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_set_bool_allow_unreachable_blocks (gcc_jit_context *ctxt,
@@ -2666,7 +2670,7 @@ gcc_jit_context_set_bool_allow_unreachable_blocks (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::set_inner_bool_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 extern void
 gcc_jit_context_set_bool_use_external_driver (gcc_jit_context *ctxt,
@@ -2683,7 +2687,7 @@ gcc_jit_context_set_bool_use_external_driver (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::add_command_line_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_add_command_line_option (gcc_jit_context *ctxt,
@@ -2702,7 +2706,7 @@ gcc_jit_context_add_command_line_option (gcc_jit_context *ctxt,
 
    The real work is done by the
    gcc::jit::recording::context::add_driver_option method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_add_driver_option (gcc_jit_context *ctxt,
@@ -2721,7 +2725,7 @@ gcc_jit_context_add_driver_option (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::enable_dump method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_enable_dump (gcc_jit_context *ctxt,
@@ -2740,7 +2744,7 @@ gcc_jit_context_enable_dump (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::compile method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_result *
 gcc_jit_context_compile (gcc_jit_context *ctxt)
@@ -2763,7 +2767,7 @@ gcc_jit_context_compile (gcc_jit_context *ctxt)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::compile_to_file method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_compile_to_file (gcc_jit_context *ctxt,
@@ -2792,7 +2796,7 @@ gcc_jit_context_compile_to_file (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::dump_to_file method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_dump_to_file (gcc_jit_context *ctxt,
@@ -2830,7 +2834,7 @@ gcc_jit_context_set_logfile (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::dump_reproducer_to_file method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 void
 gcc_jit_context_dump_reproducer_to_file (gcc_jit_context *ctxt,
@@ -2846,7 +2850,7 @@ gcc_jit_context_dump_reproducer_to_file (gcc_jit_context *ctxt,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::get_first_error method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 const char *
 gcc_jit_context_get_first_error (gcc_jit_context *ctxt)
@@ -2861,7 +2865,7 @@ gcc_jit_context_get_first_error (gcc_jit_context *ctxt)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::get_last_error method in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 const char *
 gcc_jit_context_get_last_error (gcc_jit_context *ctxt)
@@ -2874,7 +2878,7 @@ gcc_jit_context_get_last_error (gcc_jit_context *ctxt)
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::result::get_code method in jit-result.c.  */
+   gcc::jit::result::get_code method in jit-result.cc.  */
 
 void *
 gcc_jit_result_get_code (gcc_jit_result *result,
@@ -2894,7 +2898,7 @@ gcc_jit_result_get_code (gcc_jit_result *result,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, the real work is done by the
-   gcc::jit::result::get_global method in jit-result.c.  */
+   gcc::jit::result::get_global method in jit-result.cc.  */
 
 void *
 gcc_jit_result_get_global (gcc_jit_result *result,
@@ -2913,7 +2917,7 @@ gcc_jit_result_get_global (gcc_jit_result *result,
 /* Public entrypoint.  See description in libgccjit.h.
 
    After error-checking, this is essentially a wrapper around the
-   destructor for gcc::jit::result in jit-result.c.  */
+   destructor for gcc::jit::result in jit-result.cc.  */
 
 void
 gcc_jit_result_release (gcc_jit_result *result)
@@ -3052,7 +3056,7 @@ gcc_jit_rvalue_set_bool_require_tail_call (gcc_jit_rvalue *rvalue,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::type::get_aligned method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_type *
 gcc_jit_type_get_aligned (gcc_jit_type *type,
@@ -3076,7 +3080,7 @@ gcc_jit_type_get_aligned (gcc_jit_type *type,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::type::get_vector method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_type *
 gcc_jit_type_get_vector (gcc_jit_type *type, size_t num_units)
@@ -3104,7 +3108,7 @@ gcc_jit_type_get_vector (gcc_jit_type *type, size_t num_units)
 
    After error-checking, the real work is done by the
    gcc::jit::recording::function::get_address method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 gcc_jit_rvalue *
 gcc_jit_function_get_address (gcc_jit_function *fn,
@@ -3124,7 +3128,7 @@ gcc_jit_function_get_address (gcc_jit_function *fn,
 
    After error-checking, the real work is done by the
    gcc::jit::recording::context::new_rvalue_from_vector method, in
-   jit-recording.c.  */
+   jit-recording.cc.  */
 
 extern gcc_jit_rvalue *
 gcc_jit_context_new_rvalue_from_vector (gcc_jit_context *ctxt,

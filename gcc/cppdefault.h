@@ -35,7 +35,7 @@ struct default_include
 {
   const char *const fname;	/* The name of the directory.  */
   const char *const component;	/* The component containing the directory
-				   (see update_path in prefix.c) */
+				   (see update_path in prefix.cc) */
   const char cplusplus;		/* Only look here if we're compiling C++.  */
   const char cxx_aware;		/* Includes in this directory don't need to
 				   be wrapped in extern "C" when compiling

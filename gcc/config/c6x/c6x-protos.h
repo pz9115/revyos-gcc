@@ -21,7 +21,7 @@
 #ifndef GCC_C6X_PROTOS_H
 #define GCC_C6X_PROTOS_H
 
-/* Functions defined in c6x.c.  */
+/* Functions defined in c6x.cc.  */
 
 #ifdef RTX_CODE
 extern void c6x_init_cumulative_args (CUMULATIVE_ARGS *, const_tree, rtx, int);

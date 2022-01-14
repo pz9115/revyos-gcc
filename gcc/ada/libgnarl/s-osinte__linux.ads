@@ -331,7 +331,7 @@ package System.OS_Interface is
    --  The alternate signal stack for stack overflows
 
    Alternate_Stack_Size : constant := 32 * 1024;
-   --  This must be in keeping with init.c:__gnat_alternate_stack
+   --  This must be in keeping with init.cc:__gnat_alternate_stack
 
    function Get_Stack_Base (thread : pthread_t) return Address;
    pragma Inline (Get_Stack_Base);

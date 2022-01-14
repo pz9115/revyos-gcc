@@ -26,21 +26,32 @@ import argparse
 
 def skip_warning(filename, message):
     ignores = {
-            '': ['-Warray-bounds', '-Wmismatched-tags', 'gcc_gfc: -Wignored-attributes', '-Wchar-subscripts',
-                'string literal (potentially insecure): -Wformat-security', '-Wdeprecated-register',
-                '-Wvarargs', 'keyword is hidden by macro definition', "but the argument has type 'char *': -Wformat-pedantic",
-                '-Wnested-anon-types', 'qualifier in explicit instantiation of', 'attribute argument not supported: asm_fprintf',
-                'when in C++ mode, this behavior is deprecated', '-Wignored-attributes', '-Wgnu-zero-variadic-macro-arguments',
-                '-Wformat-security'],
-            'insn-modes.c': ['-Wshift-count-overflow'],
-            'insn-emit.c': ['-Wtautological-compare'],
-            'insn-attrtab.c': ['-Wparentheses-equality'],
-            'gimple-match.c': ['-Wunused-', '-Wtautological-compare'],
-            'generic-match.c': ['-Wunused-', '-Wtautological-compare'],
-            'i386.md': ['-Wparentheses-equality', '-Wtautological-compare'],
+            '': ['-Warray-bounds', '-Wmismatched-tags',
+                 'gcc_gfc: -Wignored-attributes', '-Wchar-subscripts',
+                 'string literal (potentially insecure): -Wformat-security',
+                 '-Wdeprecated-register',
+                 '-Wvarargs', 'keyword is hidden by macro definition',
+                 "but the argument has type 'char *': -Wformat-pedantic",
+                 '-Wnested-anon-types',
+                 'qualifier in explicit instantiation of',
+                 'attribute argument not supported: asm_fprintf',
+                 'when in C++ mode, this behavior is deprecated',
+                 '-Wignored-attributes', '-Wgnu-zero-variadic-macro-arguments',
+                 '-Wformat-security', '-Wundefined-internal',
+                 '-Wunknown-warning-option', '-Wc++20-extensions'],
+            'insn-modes.cc': ['-Wshift-count-overflow'],
+            'insn-emit.cc': ['-Wtautological-compare'],
+            'insn-attrtab.cc': ['-Wparentheses-equality'],
+            'gimple-match.cc': ['-Wunused-', '-Wtautological-compare'],
+            'generic-match.cc': ['-Wunused-', '-Wtautological-compare'],
+            'i386.md': ['-Wparentheses-equality', '-Wtautological-compare',
+                        '-Wtautological-overlap-compare'],
             'sse.md': ['-Wparentheses-equality', '-Wtautological-compare'],
-            'genautomata.c': ['-Wstring-plus-int']
-
+            'mmx.md': ['-Wtautological-compare'],
+            'genautomata.cc': ['-Wstring-plus-int'],
+            'fold-const-call.cc': ['-Wreturn-type'],
+            'gfortran.texi': [''],
+            'libtool': ['']
     }
 
     for name, ignores in ignores.items():

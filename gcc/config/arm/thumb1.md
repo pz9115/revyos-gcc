@@ -93,7 +93,7 @@
 
 ;; Changes to the constraints of this pattern must be propagated to those of
 ;; atomic additions in sync.md and to the logic for bind_old_new in
-;; arm_split_atomic_op in arm.c.  These must be at least as strict as the
+;; arm_split_atomic_op in arm.cc.  These must be at least as strict as the
 ;; constraints here and aim to be as permissive.
 (define_insn_and_split "*thumb1_addsi3"
   [(set (match_operand:SI          0 "register_operand" "=l,l,l,*rk,*hk,l,k,l,l,l")
@@ -173,7 +173,7 @@
 
 ;; Changes to the constraints of this pattern must be propagated to those of
 ;; atomic subtractions in sync.md and to the logic for bind_old_new in
-;; arm_split_atomic_op in arm.c.  These must be at least as strict as the
+;; arm_split_atomic_op in arm.cc.  These must be at least as strict as the
 ;; constraints here and aim to be as permissive.
 (define_insn "thumb1_subsi3_insn"
   [(set (match_operand:SI           0 "register_operand" "=l")
@@ -219,7 +219,7 @@
 
 ;; Changes to the constraints of this pattern must be propagated to those of
 ;; atomic bitwise ANDs and NANDs in sync.md and to the logic for bind_old_new
-;; in arm_split_atomic_op in arm.c.  These must be at least as strict as the
+;; in arm_split_atomic_op in arm.cc.  These must be at least as strict as the
 ;; constraints here and aim to be as permissive.
 (define_insn "*thumb1_andsi3_insn"
   [(set (match_operand:SI         0 "register_operand" "=l")
@@ -277,7 +277,7 @@
 
 ;; Changes to the constraints of this pattern must be propagated to those of
 ;; atomic inclusive ORs in sync.md and to the logic for bind_old_new in
-;; arm_split_atomic_op in arm.c.  These must be at least as strict as the
+;; arm_split_atomic_op in arm.cc.  These must be at least as strict as the
 ;; constraints here and aim to be as permissive.
 (define_insn "*thumb1_iorsi3_insn"
   [(set (match_operand:SI         0 "register_operand" "=l")
@@ -291,7 +291,7 @@
 
 ;; Changes to the constraints of this pattern must be propagated to those of
 ;; atomic exclusive ORs in sync.md and to the logic for bind_old_new in
-;; arm_split_atomic_op in arm.c.  These must be at least as strict as the
+;; arm_split_atomic_op in arm.cc.  These must be at least as strict as the
 ;; constraints here and aim to be as permissive.
 (define_insn "*thumb1_xorsi3_insn"
   [(set (match_operand:SI         0 "register_operand" "=l")

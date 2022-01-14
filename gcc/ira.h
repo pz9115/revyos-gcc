@@ -207,10 +207,10 @@ extern bool ira_bad_reload_regno (int, rtx, rtx);
 
 extern void ira_adjust_equiv_reg_cost (unsigned, int);
 
-/* ira-costs.c */
+/* ira-costs.cc */
 extern void ira_costs_c_finalize (void);
 
-/* ira-lives.c */
+/* ira-lives.cc */
 extern rtx non_conflicting_reg_copy_p (rtx_insn *);
 
 /* Spilling static chain pseudo may result in generation of wrong

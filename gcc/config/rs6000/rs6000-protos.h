@@ -21,7 +21,7 @@
 #ifndef GCC_RS6000_PROTOS_H
 #define GCC_RS6000_PROTOS_H
 
-/* Declare functions in rs6000.c */
+/* Declare functions in rs6000.cc */
 
 #ifdef RTX_CODE
 
@@ -275,7 +275,7 @@ extern void rs6000_asm_output_dwarf_pcrel (FILE *file, int size,
 extern void rs6000_asm_output_dwarf_datarel (FILE *file, int size,
 					     const char *label);
 
-/* Declare functions in rs6000-c.c */
+/* Declare functions in rs6000-c.cc */
 
 extern void rs6000_pragma_longcall (struct cpp_reader *);
 extern void rs6000_cpu_cpp_builtins (struct cpp_reader *);
@@ -287,7 +287,7 @@ extern void rs6000_target_modify_macros (bool, HOST_WIDE_INT, HOST_WIDE_INT);
 extern void (*rs6000_target_modify_macros_ptr) (bool, HOST_WIDE_INT,
 						HOST_WIDE_INT);
 
-/* Declare functions in rs6000-d.c  */
+/* Declare functions in rs6000-d.cc  */
 extern void rs6000_d_target_versions (void);
 
 #ifdef NO_DOLLAR_IN_LABEL

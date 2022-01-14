@@ -976,7 +976,7 @@ format_percent (const directive &, tree, const vr_values *)
 
 
 /* Compute intmax_type_node and uintmax_type_node similarly to how
-   tree.c builds size_type_node.  */
+   tree.cc builds size_type_node.  */
 
 static void
 build_intmax_type_nodes (tree *pintmax, tree *puintmax)
@@ -1155,7 +1155,7 @@ adjust_range_for_overflow (tree dirtype, tree *argmin, tree *argmax)
     return false;
 
   /* The logic below was inspired/lifted from the CONVERT_EXPR_CODE_P
-     branch in the extract_range_from_unary_expr function in tree-vrp.c.  */
+     branch in the extract_range_from_unary_expr function in tree-vrp.cc.  */
 
   if (TREE_CODE (*argmin) == INTEGER_CST
       && TREE_CODE (*argmax) == INTEGER_CST

@@ -7119,10 +7119,10 @@ lowpart_subreg (machine_mode outer_mode, rtx expr,
    Right now GCC has three (yes, three) major bodies of RTL simplification
    code that need to be unified.
 
-	1. fold_rtx in cse.c.  This code uses various CSE specific
+	1. fold_rtx in cse.cc.  This code uses various CSE specific
 	   information to aid in RTL simplification.
 
-	2. simplify_rtx in combine.c.  Similar to fold_rtx, except that
+	2. simplify_rtx in combine.cc.  Similar to fold_rtx, except that
 	   it uses combine specific information to aid in RTL
 	   simplification.
 
@@ -7140,7 +7140,7 @@ lowpart_subreg (machine_mode outer_mode, rtx expr,
 
 	3. Allow for pass dependent state to be provided to these
 	   routines and add simplifications based on the pass dependent
-	   state.  Remove code from cse.c & combine.c that becomes
+	   state.  Remove code from cse.cc & combine.cc that becomes
 	   redundant/dead.
 
     It will take time, but ultimately the compiler will be easier to

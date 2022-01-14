@@ -204,7 +204,7 @@ static const char dir_separator_str[] = { DIR_SEPARATOR, 0 };
 
 #define MIN_FATAL_STATUS 1
 
-/* Flag set by cppspec.c to 1.  */
+/* Flag set by cppspec.cc to 1.  */
 int is_cpp_driver;
 
 /* Flag set to nonzero if an @file argument has been supplied to gcc.  */
@@ -4282,7 +4282,7 @@ driver_handle_option (struct gcc_options *opts,
     case OPT_shared_libgcc:
     case OPT_static_libgfortran:
     case OPT_static_libstdc__:
-      /* These are always valid, since gcc.c itself understands the
+      /* These are always valid, since gcc.cc itself understands the
 	 first two, gfortranspec.c understands -static-libgfortran and
 	 g++spec.c understands -static-libstdc++ */
       validated = true;
@@ -10108,7 +10108,7 @@ convert_white_space (char *orig)
     return orig;
 }
 
-/* Restore all state within gcc.c to the initial state, so that the driver
+/* Restore all state within gcc.cc to the initial state, so that the driver
    code can be safely re-run in-process.
 
    Many const char * variables are referenced by static specs (see
@@ -10119,7 +10119,7 @@ convert_white_space (char *orig)
    values (often implicitly 0).
 
    Free the various obstacks in this file, along with "opts_obstack"
-   from opts.c.
+   from opts.cc.
 
    This function also restores any environment variables that were changed.  */
 
@@ -10148,7 +10148,7 @@ driver::finalize ()
   greatest_status = 1;
 
   obstack_free (&obstack, NULL);
-  obstack_free (&opts_obstack, NULL); /* in opts.c */
+  obstack_free (&opts_obstack, NULL); /* in opts.cc */
   obstack_free (&collect_obstack, NULL);
 
   link_command_spec = LINK_COMMAND_SPEC;

@@ -519,15 +519,15 @@ struct cpp_reader
   cpp_token avoid_paste;
   cpp_token eof;
 
-  /* Opaque handle to the dependencies of mkdeps.c.  */
+  /* Opaque handle to the dependencies of mkdeps.cc.  */
   class mkdeps *deps;
 
   /* Obstack holding all macro hash nodes.  This never shrinks.
-     See identifiers.c */
+     See identifiers.cc */
   struct obstack hash_ob;
 
   /* Obstack holding buffer and conditional structures.  This is a
-     real stack.  See directives.c.  */
+     real stack.  See directives.cc.  */
   struct obstack buffer_ob;
 
   /* Pragma table - dynamic, because a library user can add to the
@@ -562,7 +562,7 @@ struct cpp_reader
     location_t first_line;
   } out;
 
-  /* Used for buffer overlays by traditional.c.  */
+  /* Used for buffer overlays by traditional.cc.  */
   const unsigned char *saved_cur, *saved_rlimit, *saved_line_base;
 
   /* A saved list of the defined macros, for dependency checking
@@ -588,7 +588,7 @@ struct cpp_reader
    definition of a pp-number in the C standard [section 6.4.8 of C99].
 
    In the unlikely event that characters other than \r and \n enter
-   the set is_vspace, the macro handle_newline() in lex.c must be
+   the set is_vspace, the macro handle_newline() in lex.cc must be
    updated.  */
 #define _dollar_ok(x)	((x) == '$' && CPP_OPTION (pfile, dollars_in_ident))
 
@@ -646,7 +646,7 @@ inline bool _cpp_defined_macro_p (cpp_hashnode *node)
   return cpp_macro_p (node) && !(node->flags & NODE_CONDITIONAL);
 }
 
-/* In macro.c */
+/* In macro.cc */
 extern void _cpp_notify_macro_use (cpp_reader *pfile, cpp_hashnode *node);
 inline void _cpp_maybe_notify_macro_use (cpp_reader *pfile, cpp_hashnode *node)
 {
@@ -672,11 +672,11 @@ extern void _cpp_push_token_context (cpp_reader *, cpp_hashnode *,
 				     const cpp_token *, unsigned int);
 extern void _cpp_backup_tokens_direct (cpp_reader *, unsigned int);
 
-/* In identifiers.c */
+/* In identifiers.cc */
 extern void _cpp_init_hashtable (cpp_reader *, cpp_hash_table *);
 extern void _cpp_destroy_hashtable (cpp_reader *);
 
-/* In files.c */
+/* In files.cc */
 typedef struct _cpp_file _cpp_file;
 extern _cpp_file *_cpp_find_file (cpp_reader *, const char *, cpp_dir *,
 				  int angle, bool fake, bool preinclude,
@@ -700,11 +700,11 @@ extern struct stat *_cpp_get_file_stat (_cpp_file *);
 extern bool _cpp_has_header (cpp_reader *, const char *, int,
 			     enum include_type);
 
-/* In expr.c */
+/* In expr.cc */
 extern bool _cpp_parse_expr (cpp_reader *, bool);
 extern struct op *_cpp_expand_op_stack (cpp_reader *);
 
-/* In lex.c */
+/* In lex.cc */
 extern void _cpp_process_line_notes (cpp_reader *, int);
 extern void _cpp_clean_line (cpp_reader *);
 extern bool _cpp_get_fresh_line (cpp_reader *);
@@ -727,13 +727,13 @@ static inline void *_cpp_reserve_room (cpp_reader *pfile, size_t have,
 }
 extern void *_cpp_commit_buff (cpp_reader *pfile, size_t size);
 
-/* In init.c.  */
+/* In init.cc.  */
 extern void _cpp_maybe_push_include_file (cpp_reader *);
 extern const char *cpp_named_operator2name (enum cpp_ttype type);
 extern void _cpp_restore_special_builtin (cpp_reader *pfile,
 					  struct def_pragma_macro *);
 
-/* In directives.c */
+/* In directives.cc */
 extern int _cpp_test_assertion (cpp_reader *, unsigned int *);
 extern int _cpp_handle_directive (cpp_reader *, bool);
 extern void _cpp_define_builtin (cpp_reader *, const char *);
@@ -747,7 +747,7 @@ extern void _cpp_do_file_change (cpp_reader *, enum lc_reason, const char *,
 extern void _cpp_pop_buffer (cpp_reader *);
 extern char *_cpp_bracket_include (cpp_reader *);
 
-/* In directives.c */
+/* In directives.cc */
 struct _cpp_dir_only_callbacks
 {
   /* Called to print a block of lines. */
@@ -758,7 +758,7 @@ struct _cpp_dir_only_callbacks
 extern void _cpp_preprocess_dir_only (cpp_reader *,
 				      const struct _cpp_dir_only_callbacks *);
 
-/* In traditional.c.  */
+/* In traditional.cc.  */
 extern bool _cpp_scan_out_logical_line (cpp_reader *, cpp_macro *, bool);
 extern bool _cpp_read_logical_line_trad (cpp_reader *);
 extern void _cpp_overlay_buffer (cpp_reader *pfile, const unsigned char *,
@@ -771,7 +771,7 @@ extern unsigned char *_cpp_copy_replacement_text (const cpp_macro *,
 						  unsigned char *);
 extern size_t _cpp_replacement_text_len (const cpp_macro *);
 
-/* In charset.c.  */
+/* In charset.cc.  */
 
 /* The normalization state at this point in the sequence.
    It starts initialized to all zeros, and at the end
@@ -876,7 +876,7 @@ ufputs (const unsigned char *s, FILE *f)
   return fputs ((const char *)s, f);
 }
 
-  /* In line-map.c.  */
+  /* In line-map.cc.  */
 
 /* Create a macro map.  A macro map encodes source locations of tokens
    that are part of a macro replacement-list, at a macro expansion

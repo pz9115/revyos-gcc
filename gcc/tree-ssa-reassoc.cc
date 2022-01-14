@@ -2412,7 +2412,7 @@ optimize_ops_list (enum tree_code opcode,
    are converted to
 	(unsigned) (X - 2) <= 3
 
-   For more information see comments above fold_test_range in fold-const.c,
+   For more information see comments above fold_test_range in fold-const.cc,
    this implementation is for GIMPLE.  */
 
 struct range_entry
@@ -2425,7 +2425,7 @@ struct range_entry
   unsigned int idx, next;
 };
 
-/* This is similar to make_range in fold-const.c, but on top of
+/* This is similar to make_range in fold-const.cc, but on top of
    GIMPLE instead of trees.  If EXP is non-NULL, it should be
    an SSA_NAME and STMT argument is ignored, otherwise STMT
    argument should be a GIMPLE_COND.  */

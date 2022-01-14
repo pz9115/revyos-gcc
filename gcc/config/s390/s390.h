@@ -380,7 +380,7 @@ extern const char *s390_host_detect_local_cpu (int argc, const char **argv);
 #define DOUBLE_TYPE_SIZE 64
 #define LONG_DOUBLE_TYPE_SIZE (TARGET_LONG_DOUBLE_128 ? 128 : 64)
 
-/* Work around target_flags dependency in ada/targtyps.c.  */
+/* Work around target_flags dependency in ada/targtyps.cc.  */
 #define WIDEST_HARDWARE_FP_SIZE 64
 
 /* We use "unsigned char" as default.  */
@@ -791,7 +791,7 @@ CUMULATIVE_ARGS;
 
 /* Try a machine-dependent way of reloading an illegitimate address
    operand.  If we find one, push the reload and jump to WIN.  This
-   macro is used in only one place: `find_reloads_address' in reload.c.  */
+   macro is used in only one place: `find_reloads_address' in reload.cc.  */
 #define LEGITIMIZE_RELOAD_ADDRESS(AD, MODE, OPNUM, TYPE, IND, WIN)	\
   do {									\
     rtx new_rtx = legitimize_reload_address ((AD), (MODE),		\
@@ -803,7 +803,7 @@ CUMULATIVE_ARGS;
       }									\
   } while (0)
 
-/* Helper macro for s390.c and s390.md to check for symbolic constants.  */
+/* Helper macro for s390.cc and s390.md to check for symbolic constants.  */
 #define SYMBOLIC_CONST(X)						\
   (GET_CODE (X) == SYMBOL_REF						\
    || GET_CODE (X) == LABEL_REF						\

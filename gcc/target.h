@@ -80,7 +80,7 @@ enum print_switch_type
 
 /* Types of memory operation understood by the "by_pieces" infrastructure.
    Used by the TARGET_USE_BY_PIECES_INFRASTRUCTURE_P target hook and
-   internally by the functions in expr.c.  */
+   internally by the functions in expr.cc.  */
 
 enum by_pieces_operation
 {
@@ -98,7 +98,7 @@ extern unsigned HOST_WIDE_INT by_pieces_ninsns (unsigned HOST_WIDE_INT,
 
 typedef int (* print_switch_fn_type) (print_switch_type, const char *);
 
-/* An example implementation for ELF targets.  Defined in varasm.c  */
+/* An example implementation for ELF targets.  Defined in varasm.cc  */
 extern int elf_record_gcc_switches (print_switch_type type, const char *);
 
 /* Some places still assume that all pointer or address modes are the
@@ -155,7 +155,7 @@ class function_arg_info;
 /* This is defined in function-abi.h.  */
 class predefined_function_abi;
 
-/* These are defined in tree-vect-stmts.c.  */
+/* These are defined in tree-vect-stmts.cc.  */
 extern tree stmt_vectype (class _stmt_vec_info *);
 extern bool stmt_in_inner_loop_p (class _stmt_vec_info *);
 

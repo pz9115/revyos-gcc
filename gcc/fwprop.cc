@@ -411,7 +411,7 @@ should_replace_address (rtx old_rtx, rtx new_rtx, machine_mode mode,
   /* If the addresses have equivalent cost, prefer the new address
      if it has the highest `set_src_cost'.  That has the potential of
      eliminating the most insns without additional costs, and it
-     is the same that cse.c used to do.  */
+     is the same that cse.cc used to do.  */
   if (gain == 0)
     gain = (set_src_cost (new_rtx, VOIDmode, speed)
 	    - set_src_cost (old_rtx, VOIDmode, speed));

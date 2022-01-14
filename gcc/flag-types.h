@@ -45,7 +45,7 @@ enum debug_info_levels
    The following function determines whether or not debug information
    should be generated for a given struct.  The indirect parameter
    indicates that the struct is being handled indirectly, via
-   a pointer.  See opts.c for the implementation. */
+   a pointer.  See opts.cc for the implementation. */
 
 enum debug_info_usage
 {

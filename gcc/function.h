@@ -269,7 +269,7 @@ struct GTY(()) function {
   /* Value histograms attached to particular statements.  */
   htab_t GTY((skip)) value_histograms;
 
-  /* For function.c.  */
+  /* For function.cc.  */
 
   /* Points to the FUNCTION_DECL of this function.  */
   tree decl;

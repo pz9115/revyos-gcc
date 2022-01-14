@@ -110,7 +110,7 @@ gfc_omp_check_optional_argument (tree decl, bool for_present_check)
    /* Scalars with VALUE attribute which are passed by value use a hidden
       argument to denote the present status.  They are passed as nonpointer type
       with one exception: 'type(c_ptr), value' as 'void*'.  */
-   /* Cf. trans-expr.c's gfc_conv_expr_present.  */
+   /* Cf. trans-expr.cc's gfc_conv_expr_present.  */
    if (TREE_CODE (TREE_TYPE (decl)) != POINTER_TYPE
        || VOID_TYPE_P (TREE_TYPE (TREE_TYPE (decl))))
     {
@@ -379,7 +379,7 @@ gfc_omp_unshare_expr_r (tree *tp, int *walk_subtrees, void *)
 /* Unshare in expr anything that the FE which normally doesn't
    care much about tree sharing (because during gimplification
    everything is unshared) could cause problems with tree sharing
-   at omp-low.c time.  */
+   at omp-low.cc time.  */
 
 static tree
 gfc_omp_unshare_expr (tree expr)
@@ -2514,7 +2514,7 @@ gfc_trans_omp_clauses (stmtblock_t *block, gfc_omp_clauses *clauses,
 			 the variable is present; hence, we now set it to NULL
 			 to avoid accessing undefined variables.  We cannot use
 			 a temporary variable here as otherwise the replacement
-			 of the variables in omp-low.c will not work.  */
+			 of the variables in omp-low.cc will not work.  */
 		      if (present && GFC_ARRAY_TYPE_P (TREE_TYPE (decl)))
 			{
 			  tree tmp = fold_build2_loc (input_location,

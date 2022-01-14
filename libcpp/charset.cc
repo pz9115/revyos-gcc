@@ -1,7 +1,7 @@
 /* CPP Library - charsets
    Copyright (C) 1998-2020 Free Software Foundation, Inc.
 
-   Broken out of c-lex.c Apr 2003, adding valid C99 UCN ranges.
+   Broken out of c-lex.cc Apr 2003, adding valid C99 UCN ranges.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the

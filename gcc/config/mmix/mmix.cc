@@ -1929,7 +1929,7 @@ mmix_dbx_register_number (unsigned regno)
    Now the MMIX port's own functions.  First the exported ones.  */
 
 /* Wrapper for get_hard_reg_initial_val since integrate.h isn't included
-   from insn-emit.c.  */
+   from insn-emit.cc.  */
 
 rtx
 mmix_get_hard_reg_initial_val (machine_mode mode, int regno)
@@ -2152,7 +2152,7 @@ mmix_expand_prologue (void)
 	 the register stack at landing pads.  FIXME: It's a kludge because
 	 we can't describe the effect of the PUSHJ and PUSHGO insns on the
 	 register stack at the moment.  Best thing would be to handle it
-	 like stack-pointer offsets.  Better: some hook into dwarf2out.c
+	 like stack-pointer offsets.  Better: some hook into dwarf2out.cc
 	 to produce DW_CFA_expression:s that specify the increment of rO,
 	 and unwind it at eh_return (preferred) or at the landing pad.
 	 Then saves to $0..$G-1 could be specified through that register.  */

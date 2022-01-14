@@ -23,7 +23,7 @@ along with this program; see the file COPYING3.  If not see
 #ifndef LIBCPP_MKDEPS_H
 #define LIBCPP_MKDEPS_H
 
-/* This is the data structure used by all the functions in mkdeps.c.
+/* This is the data structure used by all the functions in mkdeps.cc.
    It's quite straightforward, but should be treated as opaque.  */
 
 class mkdeps;

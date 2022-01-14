@@ -44,7 +44,7 @@ static location_t linemap_macro_loc_to_exp_point (line_maps *,
 						  location_t,
 						  const line_map_ordinary **);
 
-/* Counters defined in macro.c.  */
+/* Counters defined in macro.cc.  */
 extern unsigned num_expanded_macros_counter;
 extern unsigned num_macro_tokens_counter;
 
@@ -374,7 +374,7 @@ linemap_check_files_exited (line_maps *set)
   for (const line_map_ordinary *map = LINEMAPS_LAST_ORDINARY_MAP (set);
        ! MAIN_FILE_P (map);
        map = linemap_included_from_linemap (set, map))
-    fprintf (stderr, "line-map.c: file \"%s\" entered but not left\n",
+    fprintf (stderr, "line-map.cc: file \"%s\" entered but not left\n",
 	     ORDINARY_MAP_FILE_NAME (map));
 }
 
@@ -412,7 +412,7 @@ new_linemap (line_maps *set,  location_t start_location)
 
       /* We are going to execute some dance to try to reduce the
 	 overhead of the memory allocator, in case we are using the
-	 ggc-page.c one.
+	 ggc-page.cc one.
 	 
 	 The actual size of memory we are going to get back from the
 	 allocator may well be larger than what we ask for.  Use this
