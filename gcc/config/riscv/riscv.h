@@ -59,6 +59,7 @@ extern const char *riscv_default_mtune (int argc, const char **argv);
    --with-arch is ignored if -march or -mcpu is specified.
    --with-abi is ignored if -mabi is specified.
    --with-tune is ignored if -mtune or -mcpu is specified.
+   --with-isa-spec is ignored if -misa-spec is specified.
 
    But using default -march/-mtune value if -mcpu don't have valid option.  */
 #define OPTION_DEFAULT_SPECS \
@@ -69,6 +70,7 @@ extern const char *riscv_default_mtune (int argc, const char **argv);
 	   "  %{!mcpu=*:-march=%(VALUE)}"				\
 	   "  %{mcpu=*:%:riscv_expand_arch_from_cpu(%* %(VALUE))}}" },	\
   {"abi", "%{!mabi=*:-mabi=%(VALUE)}" }, \
+  {"isa_spec", "%{!misa-spec=*:-misa-spec=%(VALUE)}" }, \
 
 #ifdef IN_LIBGCC2
 #undef TARGET_64BIT
