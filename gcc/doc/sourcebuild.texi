@@ -2145,6 +2145,18 @@ PowerPC target supports executing AltiVec instructions.
 PowerPC target supports executing VSX instructions (ISA 2.06).
 @end table
 
+@subsection RISC-V specific attributes
+
+@table @code
+
+@item rv32
+Test system has an integer register width of 32 bits.
+
+@item rv64
+Test system has an integer register width of 64 bits.
+
+@end table
+
 @subsubsection Other hardware attributes
 
 @c Please keep this table sorted alphabetically.
