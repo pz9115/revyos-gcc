@@ -1309,7 +1309,6 @@ riscv_expand_arch_from_cpu (int argc ATTRIBUTE_UNUSED,
   return xasprintf ("-march=%s", arch.c_str());
 }
 
-
 /* Implement TARGET_OPTION_OPTIMIZATION_TABLE.  */
 static const struct default_options riscv_option_optimization_table[] =
   {
