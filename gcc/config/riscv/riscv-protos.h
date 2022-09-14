@@ -76,6 +76,7 @@ extern rtx riscv_gen_gpr_save_insn (struct riscv_frame_info *);
 extern bool riscv_gpr_save_operation_p (rtx);
 extern void riscv_reinit (void);
 extern bool riscv_v_ext_enabled_vector_mode_p (machine_mode);
+extern bool riscv_shamt_matches_mask_p (int, HOST_WIDE_INT);
 
 /* Routines implemented in riscv-c.cc.  */
 void riscv_cpu_cpp_builtins (cpp_reader *);

@@ -6380,6 +6380,15 @@ riscv_vector_alignment (const_tree type)
   return wi::umin (min_size, 128).to_uhwi ();
 }
 
+/* Return true if a shift-amount matches the trailing cleared bits on
+   a bitmask.  */
+
+bool
+riscv_shamt_matches_mask_p (int shamt, HOST_WIDE_INT mask)
+{
+  return shamt == ctz_hwi (mask);
+}
+
 /* Initialize the GCC target structure.  */
 #undef TARGET_ASM_ALIGNED_HI_OP
 #define TARGET_ASM_ALIGNED_HI_OP "\t.half\t"
