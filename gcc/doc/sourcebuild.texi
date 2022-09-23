@@ -2145,7 +2145,7 @@ PowerPC target supports executing AltiVec instructions.
 PowerPC target supports executing VSX instructions (ISA 2.06).
 @end table
 
-@subsection RISC-V specific attributes
+@subsubsection RISC-V specific attributes
 
 @table @code
 
