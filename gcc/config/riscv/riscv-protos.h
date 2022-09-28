@@ -121,6 +121,7 @@ extern void riscv_run_selftests (void);
 #endif
 
 /* Routines implemented in riscv-string.cc.  */
+extern bool riscv_expand_strcmp (rtx, rtx, rtx, rtx, rtx);
 extern bool riscv_expand_strlen (rtx, rtx, rtx, rtx);
 
 /* Routines implemented in thead.cc.  */
