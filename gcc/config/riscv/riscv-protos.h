@@ -120,6 +120,9 @@ extern void riscv_run_selftests (void);
 } // namespace selftest
 #endif
 
+/* Routines implemented in riscv-string.cc.  */
+extern bool riscv_expand_strlen (rtx, rtx, rtx, rtx);
+
 /* Routines implemented in thead.cc.  */
 extern bool th_mempair_operands_p (rtx[4], bool, machine_mode);
 extern void th_mempair_order_operands (rtx[4], bool, machine_mode);
