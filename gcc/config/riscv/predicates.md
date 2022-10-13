@@ -262,3 +262,8 @@
 
 	return true;
 })
+
+;; A CONST_INT operand that has exactly two bits cleared.
+(define_predicate "const_nottwobits_operand"
+  (and (match_code "const_int")
+       (match_test "popcount_hwi (~UINTVAL (op)) == 2")))
