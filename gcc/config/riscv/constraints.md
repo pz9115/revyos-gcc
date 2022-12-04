@@ -128,3 +128,11 @@
   "POLY_INT"
   (and (match_code "const_poly_int")
        (match_test "known_eq (rtx_to_poly_int64 (op), BYTES_PER_RISCV_VECTOR)")))
+
+;; Vendor ISA extension constraints.
+
+(define_register_constraint "th_f_fmv" "TARGET_XTHEADFMV ? FP_REGS : NO_REGS"
+  "A floating-point register for XTheadFmv.")
+
+(define_register_constraint "th_r_fmv" "TARGET_XTHEADFMV ? GR_REGS : NO_REGS"
+  "An integer register for XTheadFmv.")
