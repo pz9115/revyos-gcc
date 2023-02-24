@@ -153,6 +153,10 @@ struct GTY(())  machine_function {
 
   /* The current frame information, calculated by riscv_compute_frame_info.  */
   struct riscv_frame_info frame;
+
+  /* The components already handled by separate shrink-wrapping, which should
+     not be considered by the prologue and epilogue.  */
+  bool reg_is_wrapped_separately[FIRST_PSEUDO_REGISTER];
 };
 
 /* Information about a single argument.  */
@@ -4746,6 +4750,35 @@ riscv_set_return_address (rtx address, rtx scratch)
   riscv_emit_move (gen_frame_mem (GET_MODE (address), slot_address), address);
 }
 
+/* Save register REG to MEM.  Make the instruction frame-related.  */
+
+static void
+riscv_save_reg (rtx reg, rtx mem)
+{
+  riscv_emit_move (mem, reg);
+  riscv_set_frame_expr (riscv_frame_set (mem, reg));
+}
+
+/* Restore register REG from MEM.  */
+
+static void
+riscv_restore_reg (rtx reg, rtx mem)
+{
+  rtx insn = riscv_emit_move (reg, mem);
+  rtx dwarf = NULL_RTX;
+  dwarf = alloc_reg_note (REG_CFA_RESTORE, reg, dwarf);
+
+  if (epilogue_cfa_sp_offset && REGNO (reg) == HARD_FRAME_POINTER_REGNUM)
+    {
+      rtx cfa_adjust_rtx = gen_rtx_PLUS (Pmode, stack_pointer_rtx,
+                                        GEN_INT (epilogue_cfa_sp_offset));
+      dwarf = alloc_reg_note (REG_CFA_DEF_CFA, cfa_adjust_rtx, dwarf);
+    }
+
+  REG_NOTES (insn) = dwarf;
+  RTX_FRAME_RELATED_P (insn) = 1;
+}
+
 /* A function to save or store a register.  The first argument is the
    register and the second is the stack slot.  */
 typedef void (*riscv_save_restore_fn) (rtx, rtx);
@@ -4764,6 +4797,51 @@ riscv_save_restore_reg (machine_mode mode, int regno,
   fn (gen_rtx_REG (mode, regno), mem);
 }
 
+/* Return the next register up from REGNO up to LIMIT for the callee
+   to save or restore.  OFFSET will be adjusted accordingly.
+   If INC is set, then REGNO will be incremented first.
+   Returns INVALID_REGNUM if there is no such next register.  */
+
+static unsigned int
+riscv_next_saved_reg (unsigned int regno, unsigned int limit,
+		      HOST_WIDE_INT *offset, bool inc = true)
+{
+  if (inc)
+    regno++;
+
+  while (regno <= limit)
+    {
+      if (BITSET_P (cfun->machine->frame.mask, regno - GP_REG_FIRST))
+	{
+	  *offset = *offset - UNITS_PER_WORD;
+	  return regno;
+	}
+
+      regno++;
+    }
+  return INVALID_REGNUM;
+}
+
+/* Return TRUE if provided REGNO is eh return data register.  */
+
+static bool
+riscv_is_eh_return_data_register (unsigned int regno)
+{
+  unsigned int i, regnum;
+
+  if (!crtl->calls_eh_return)
+    return false;
+
+  for (i = 0; (regnum = EH_RETURN_DATA_REGNO (i)) != INVALID_REGNUM; i++)
+    if (regno == regnum)
+      {
+	return true;
+      }
+
+  return false;
+}
+
+
 /* Call FN for each register that is saved by the current function.
    SP_OFFSET is the offset of the current stack pointer from the start
    of the frame.  */
@@ -4773,10 +4851,13 @@ riscv_for_each_saved_reg (poly_int64 sp_offset, riscv_save_restore_fn fn,
 			  bool epilogue, bool maybe_eh_return)
 {
   HOST_WIDE_INT offset;
+  unsigned int regno, num_masked_fp = 0;
+  unsigned int start = GP_REG_FIRST;
+  unsigned int limit = GP_REG_LAST;
 
   /* Save the link register and s-registers. */
   offset = (cfun->machine->frame.gp_sp_offset - sp_offset).to_constant ();
-  for (unsigned int regno = GP_REG_FIRST; regno <= GP_REG_LAST; regno++)
+  for (start; regno <= limit; regno++)
     if (BITSET_P (cfun->machine->frame.mask, regno - GP_REG_FIRST))
       {
 	bool handle_reg = TRUE;
@@ -4799,6 +4880,36 @@ riscv_for_each_saved_reg (poly_int64 sp_offset, riscv_save_restore_fn fn,
 		}
 	  }
 
+  if (TARGET_XTHEADMEMPAIR)
+	{
+	  /* Get the next reg/offset pair.  */
+	  HOST_WIDE_INT offset2 = offset;
+	  unsigned int regno2 = riscv_next_saved_reg (regno, limit, &offset2);
+
+	  /* Validate everything before emitting a mempair instruction.  */
+	  if (regno2 != INVALID_REGNUM
+	      && !cfun->machine->reg_is_wrapped_separately[regno2]
+	      && !(epilogue && !maybe_eh_return
+		   && riscv_is_eh_return_data_register (regno2)))
+	    {
+	      bool load_p = (fn == riscv_restore_reg);
+	      rtx operands[4];
+	      th_mempair_prepare_save_restore_operands (operands,
+							load_p, word_mode,
+							regno, offset,
+							regno2, offset2);
+
+	      /* If the operands fit into a mempair insn, then emit one.  */
+	      if (th_mempair_operands_p (operands, load_p, word_mode))
+		{
+		  th_mempair_save_restore_regs (operands, load_p, word_mode);
+		  offset = offset2;
+		  regno = regno2;
+		  continue;
+		}
+	    }
+	}
+
 	if (handle_reg)
 	  riscv_save_restore_reg (word_mode, regno, offset, fn);
 	offset -= UNITS_PER_WORD;
@@ -4815,35 +4926,6 @@ riscv_for_each_saved_reg (poly_int64 sp_offset, riscv_save_restore_fn fn,
 	riscv_save_restore_reg (mode, regno, offset, fn);
 	offset -= GET_MODE_SIZE (mode).to_constant ();
       }
-}
-
-/* Save register REG to MEM.  Make the instruction frame-related.  */
-
-static void
-riscv_save_reg (rtx reg, rtx mem)
-{
-  riscv_emit_move (mem, reg);
-  riscv_set_frame_expr (riscv_frame_set (mem, reg));
-}
-
-/* Restore register REG from MEM.  */
-
-static void
-riscv_restore_reg (rtx reg, rtx mem)
-{
-  rtx insn = riscv_emit_move (reg, mem);
-  rtx dwarf = NULL_RTX;
-  dwarf = alloc_reg_note (REG_CFA_RESTORE, reg, dwarf);
-
-  if (epilogue_cfa_sp_offset && REGNO (reg) == HARD_FRAME_POINTER_REGNUM)
-    {
-      rtx cfa_adjust_rtx = gen_rtx_PLUS (Pmode, stack_pointer_rtx,
-					 GEN_INT (epilogue_cfa_sp_offset));
-      dwarf = alloc_reg_note (REG_CFA_DEF_CFA, cfa_adjust_rtx, dwarf);
-    }
-
-  REG_NOTES (insn) = dwarf;
-  RTX_FRAME_RELATED_P (insn) = 1;
 }
 
 /* For stack frames that can't be allocated with a single ADDI instruction,
