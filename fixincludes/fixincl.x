@@ -4021,7 +4021,7 @@ static tTestDesc aGlibc_Cxx_Floatn_1Tests[] = {
  */
 static const char* apzGlibc_Cxx_Floatn_1Patch[] = {
     "format",
-    "%1(defined __cplusplus && !__GNUC_PREREQ (13, 0))\n\
+    "%1(defined __cplusplus && !__GNUC_PREREQ (10, 4))\n\
 %2",
     (char*)NULL };
 
@@ -4061,7 +4061,7 @@ static tTestDesc aGlibc_Cxx_Floatn_2Tests[] = {
  */
 static const char* apzGlibc_Cxx_Floatn_2Patch[] = {
     "format",
-    "%1(defined __cplusplus && !__GNUC_PREREQ (13, 0))\n\
+    "%1(defined __cplusplus && !__GNUC_PREREQ (10, 4))\n\
 %2",
     (char*)NULL };
 
@@ -4106,7 +4106,7 @@ static tTestDesc aGlibc_Cxx_Floatn_3Tests[] = {
  */
 static const char* apzGlibc_Cxx_Floatn_3Patch[] = {
     "format",
-    "%1(defined __cplusplus && !__GNUC_PREREQ (13, 0))\n\
+    "%1(defined __cplusplus && !__GNUC_PREREQ (10, 4))\n\
 %2",
     (char*)NULL };
 
