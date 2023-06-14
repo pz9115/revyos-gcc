@@ -925,7 +925,7 @@ c_common_post_options (const char **pfilename)
   if (warn_shift_negative_value == -1)
     warn_shift_negative_value = (extra_warnings
 				 && (cxx_dialect >= cxx11 || flag_isoc99)
-				 && cxx_dialect < cxx2a);
+				 && cxx_dialect < cxx20);
 
   /* -Wregister is enabled by default in C++17.  */
   SET_OPTION_IF_UNSET (&global_options, &global_options_set, warn_register,

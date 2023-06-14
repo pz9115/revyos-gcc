@@ -1051,7 +1051,25 @@ check_narrowing (tree type, tree init, tsubst_flags_t complain,
   else if (TREE_CODE (ftype) == REAL_TYPE
 	   && TREE_CODE (type) == REAL_TYPE)
     {
-      if (TYPE_PRECISION (type) < TYPE_PRECISION (ftype))
+      if ((extended_float_type_p (ftype) || extended_float_type_p (type))
+	  ? /* "from a floating-point type T to another floating-point type
+	       whose floating-point conversion rank is neither greater than
+	       nor equal to that of T".
+	       So, it is ok if
+	       cp_compare_floating_point_conversion_ranks (ftype, type)
+	       returns -2 (type has greater conversion rank than ftype)
+	       or [-1..1] (type has equal conversion rank as ftype, possibly
+	       different subrank.  Only do this if at least one of the
+	       types is extended floating-point type, otherwise keep doing
+	       what we did before (for the sake of non-standard
+	       backend types).  */
+	    cp_compare_floating_point_conversion_ranks (ftype, type) >= 2
+	  : ((same_type_p (ftype, long_double_type_node)
+	      && (same_type_p (type, double_type_node)
+		  || same_type_p (type, float_type_node)))
+	     || (same_type_p (ftype, double_type_node)
+		 && same_type_p (type, float_type_node))
+	     || (TYPE_PRECISION (type) < TYPE_PRECISION (ftype))))
 	{
 	  if (TREE_CODE (init) == REAL_CST)
 	    {
@@ -1082,7 +1100,7 @@ check_narrowing (tree type, tree init, tsubst_flags_t complain,
 	   && (TYPE_PTR_P (ftype) || TYPE_PTRMEM_P (ftype)))
     /* This hasn't actually made it into C++20 yet, but let's add it now to get
        an idea of the impact.  */
-    ok = (cxx_dialect < cxx2a);
+    ok = (cxx_dialect < cxx20);
 
   bool almost_ok = ok;
   if (!ok && !CONSTANT_CLASS_P (init) && (complain & tf_warning_or_error))

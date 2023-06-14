@@ -13494,7 +13494,7 @@ tsubst_aggr_type (tree t,
 	  if (argvec == error_mark_node)
 	    r = error_mark_node;
 	  else if (!entering_scope
-		   && cxx_dialect >= cxx2a && dependent_scope_p (context))
+		   && cxx_dialect >= cxx20 && dependent_scope_p (context))
 	    {
 	      /* See maybe_dependent_member_ref.  */
 	      tree name = TYPE_IDENTIFIER (t);
@@ -16437,7 +16437,7 @@ static tree
 maybe_dependent_member_ref (tree t, tree args, tsubst_flags_t complain,
 			    tree in_decl)
 {
-  if (cxx_dialect < cxx2a)
+  if (cxx_dialect < cxx20)
     return NULL_TREE;
 
   tree ctx = context_for_name_lookup (t);
@@ -19458,7 +19458,7 @@ tsubst_copy_and_build (tree t,
 	  {
 	    /* C++20 P0846: we can encounter an IDENTIFIER_NODE here when
 	       name lookup found nothing when parsing the template name.  */
-	    gcc_assert (cxx_dialect >= cxx2a || seen_error ());
+	    gcc_assert (cxx_dialect >= cxx20 || seen_error ());
 	    RETURN (tid);
 	  }
 	else
