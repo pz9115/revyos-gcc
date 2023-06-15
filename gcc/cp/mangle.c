@@ -2579,11 +2579,11 @@ write_builtin_type (tree type)
 	write_char ('d');
       else if (type == long_double_type_node)
 	write_char ('e');
-      else if (type == dfloat32_type_node || type == fallback_dfloat32_type)
+      else if (type == dfloat32_type_node)
 	write_string ("Df");
-      else if (type == dfloat64_type_node || type == fallback_dfloat64_type)
+      else if (type == dfloat64_type_node)
 	write_string ("Dd");
-      else if (type == dfloat128_type_node || type == fallback_dfloat128_type)
+      else if (type == dfloat128_type_node)
 	write_string ("De");
       else if (type == float16_type_node)
 	write_string ("DF16_");
@@ -2599,6 +2599,8 @@ write_builtin_type (tree type)
 	write_string ("DF64x");
       else if (type == float128x_type_node)
 	write_string ("DF128x");
+      else if (type == bfloat16_type_node)
+	write_string ("DF16b");
       else
 	gcc_unreachable ();
       break;
