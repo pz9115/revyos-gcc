@@ -9,6 +9,8 @@ void func(void)
   f ();
 }
 
+/* { dg-final { scan-assembler "th.ipush" } }*/
+/* { dg-final { scan-assembler "th.ipop" } }*
 void __attribute__ ((interrupt))
 func_leaf1 (void)
 {
@@ -67,8 +69,8 @@ func_leaf2 (void)
   interrupt_t3++;
 }
 
-/* { dg-final { scan-assembler-times "ipush\n" 2 } }*/
-/* { dg-final { scan-assembler-times "ipop\n" 2 } }*/
+/* { dg-final { scan-assembler-times "th.ipush\n" 2 } }*/
+/* { dg-final { scan-assembler-times "th.ipop\n" 2 } }*/
 
 /* { dg-final { scan-assembler-times "csrr\t" 3 } } */
 /* { dg-final { scan-assembler-times "csrw\t" 3 } } */

@@ -2510,7 +2510,7 @@ riscv_output_move (rtx dest, rtx src)
 	  if (TARGET_RVZFA)
 	    return "fmv.x.w\t%0,%1\n\tfmvh.x.d\t%N0,%1";
 
-	  return "fmv.x.w\t%0,%1\n\tfmv.x.hw\t%N0,%1";
+	  return "fmv.x.w\t%0,%1\n\tth.fmv.x.hw\t%N0,%1";
 	}
 
       if (src_code == REG && FP_REG_P (REGNO (src)))
@@ -2601,7 +2601,7 @@ riscv_output_move (rtx dest, rtx src)
 		{
 		  if (TARGET_RVZFA)
 		    return "fmvp.d.x\t%0,%1,%N1";
-		  return "fmv.s.x\t%0,%1\n\tfmv.hw.x\t%0,%N1";
+		  return "fmv.s.x\t%0,%1\n\tth.fmv.hw.x\t%0,%N1";
 		}
 	      /* in RV32, we can emulate fmv.d.x %0, x0 using fcvt.d.w */
 	      gcc_assert (src == CONST0_RTX (mode));
