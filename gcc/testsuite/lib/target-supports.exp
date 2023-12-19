@@ -10496,3 +10496,26 @@ proc check_effective_target_riscv_rvv_v0p7 { } {
 	    #endif
 	    }]
 }
+
+# Return 1 if this is an RISCV target supporting atomic.
+proc check_effective_target_riscv_atomic { } {
+    return [check_no_compiler_messages riscv_atomic assembly {
+	    #if !defined (__riscv_atomic)
+	    #error FOO
+	    #endif
+	    }]
+}
+
+# Return 1 if this is an RISCV target supporting RVV fixed.
+proc check_effective_target_riscv_rvv_fixed { } {
+    if { ![istarget riscv*-*-*] } {
+	return 0
+    }
+    return [check_no_compiler_messages riscv_rvv assembly {
+	#if !defined (__riscv_vector)
+	#error FOO
+	#endif
+
+	struct rvv_fixed {vint32m1_t va;};
+    }]
+}

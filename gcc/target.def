@@ -1020,6 +1020,16 @@ debug output to.  @var{verbose} is the verbose level provided by\n\
 was scheduled.",
  int, (FILE *file, int verbose, rtx_insn *insn, int more), NULL)
 
+DEFHOOK
+(adjust_unrecog_for_ready_list,
+ "This hook is used to adjust the negative impact of non-actual instructions\n\
+on pipeline optimization, such as CLOBBER, which will affect register\n\
+allocation in severe cases, resulting in reduced program performance.\n\
+@var{insn} is insn in ready list. @var{cost} is the cycle\n\
+used to increase the virtual instruction in order to delay its execution.\n\
+@var{reason} is the reason for the delayed launch of the insn.",
+ void, (rtx_insn *insn, int *cost, const char **reason), NULL)
+
 /* Initialize machine-dependent scheduling code.  */
 DEFHOOK
 (init,
@@ -3442,6 +3452,14 @@ insns involving vector mode @var{mode}.  At the very least, it\n\
 must have move patterns for this mode.",
  bool, (machine_mode mode),
  hook_bool_mode_false)
+
+DEFHOOK
+(vectorize_matched_mode,
+ "Find a mode that is suitable for representing a vector with @var{nunits}\n\
+elements of mode @var{innermode}, if one exists.  The returned mode can be\n\
+either an integer mode or a vector mode.",
+ opt_machine_mode, (scalar_mode innermode, poly_uint64 nunits),
+ NULL)
 
 DEFHOOK
 (compatible_vector_types_p,
