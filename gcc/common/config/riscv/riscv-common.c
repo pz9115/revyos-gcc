@@ -163,8 +163,6 @@ static const struct riscv_ext_version riscv_ext_version_table[] =
   {"zifencei", ISA_SPEC_CLASS_20190608, 2, 0},
 
   {"zfh",     ISA_SPEC_CLASS_NONE, 1, 0},
-  {"zvamo",   ISA_SPEC_CLASS_NONE, 0, 7},
-  {"zvlsseg", ISA_SPEC_CLASS_NONE, 0, 7},
 
   {"zve32x", ISA_SPEC_CLASS_NONE, 1, 0},
   {"zve32f", ISA_SPEC_CLASS_NONE, 1, 0},
@@ -190,8 +188,6 @@ static const struct riscv_ext_version riscv_ext_version_table[] =
   {"zvfbfwma", ISA_SPEC_CLASS_NONE, 0, 8},
 
   {"zfa",     ISA_SPEC_CLASS_NONE, 0, 1},
-  {"zvamo",   ISA_SPEC_CLASS_NONE, 1, 0},
-  {"zvlsseg", ISA_SPEC_CLASS_NONE, 1, 0},
 
   {"xtheadc", ISA_SPEC_CLASS_NONE, 2, 0},
   {"xtheade", ISA_SPEC_CLASS_NONE, 2, 0},
@@ -942,12 +938,8 @@ riscv_subset_list::thead_specific_work ()
 
   if ((implied_subset = lookup ("v", 0, 7)))
     {
-      if (!lookup ("zvamo"))
-	add ("zvamo", implied_subset->major_version,
-	     implied_subset->minor_version,
-	     implied_subset->explicit_version_p, false);
-      if (!lookup ("zvlsseg"))
-	add ("zvlsseg", implied_subset->major_version,
+      if (!lookup ("xtheadzvamo"))
+	add ("xtheadzvamo", implied_subset->major_version,
 	     implied_subset->minor_version,
 	     implied_subset->explicit_version_p, false);
     }
